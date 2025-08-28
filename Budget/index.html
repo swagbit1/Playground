@@ -4,26 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="css/index.css">
 
 
     <script>
         window.addEventListener("DOMContentLoaded", function(){
+            let incomeTab = document.querySelector(".income")
+            let options = document.querySelector(".options")
+            let title = document.querySelector(".title")
 
+            incomeTab.addEventListener("click", () => {
+                incomeTab.classList.toggle("expanded");
 
+                if (incomeTab.classList.contains("expanded")){
+                    options.style.display = "block";
+                } else{
+                    options.style.display = "none";
+
+                }
+            })
         })
     </script>
 </head>
 <body>
     <!-- Income Page -->
      <div class="income">
-        <h1>Income</h1>
+        <h1 class="title">Income</h1>
+        <div class="options" hidden>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+            <button class="optionsBtn">Shoppers</button>
+           
+        </div>
      </div>
      <div class="housingAndUtilities">
-        <h1>Income22222</h1>
+        <h1></h1>
 
      </div>
      <div class="foodAndGroceries">

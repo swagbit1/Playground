@@ -1,0 +1,74 @@
+.income {
+    height: 300px;
+    width: 500px;
+    background-color: lightblue;
+    border-radius: 100px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    transition: background-color 0.15s ease, all 0.5s ease;
+    overflow: hidden;
+
+}
+
+.income:hover {
+    background-color: rgb(105, 137, 147);
+
+}
+
+.title {
+    position: relative;
+    margin: 0;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;          /* wrap buttons into rows */
+    justify-content: center;  /* center horizontally */
+    align-items: center;  /* align to the top of container */
+    gap: 200px;                /* space between buttons */
+
+    opacity: 0;
+    display: none;
+    transition: all 0.3s ease;
+
+    height: 80%;
+    width: 85%;
+    border-radius: 20px;
+    background-color: blue;
+
+    margin: 0 auto;  /* <-- centers the whole .options container */
+    padding: 20px;   /* adds some breathing space inside */
+}
+
+.income.expanded {
+    min-height: 400px;
+    max-width: 1000px;
+    height: auto;
+    width: auto;
+    align-items: flex-start;
+}
+
+.income.expanded .title {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.income.expanded .options {
+    opacity: 1;
+    margin-top: 50px;
+}
+
+
+
+.optionsBtn {
+    height: 100px;
+    width: 102px;
+    margin: 20px;
+}
+
