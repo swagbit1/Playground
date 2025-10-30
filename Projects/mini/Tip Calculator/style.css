@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.calculator {
+
+    max-width: 500px;
+    background-color: white;
+    padding: 1rem;
+
+    margin: 200px auto;
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+}

@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    height: 600px;
+    width: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#containerTitle {
+    transform: translateY(-30px);
+}
+
+.main {
+    height: 500px;
+    width: 400px;
+
+    background-color: rgb(239, 237, 237);
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+.balanceMain {
+    height: 200px;
+    width: 350px;
+    background-color: darkblue;
+    margin-top: 25px;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.balanceMain h1,
+h2,
+h3 {
+    color: white;
+}
+
+.incomeExpense {
+    display: flex;
+    gap: 100px;
+
+}
+
+.transactionsContainer{
+    background-color: black;
+    height: auto;
+    width: 350px;
+}

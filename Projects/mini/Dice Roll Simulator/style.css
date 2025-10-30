@@ -1,0 +1,77 @@
+body {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-top: 5rem;
+}
+
+.dice {
+    font-size: 15rem;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.rollDice {
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 1rem;
+
+
+    background-color: rgb(89, 210, 210);
+    color: white;
+
+    transition: background-color 0.17s ease;
+    box-shadow: 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.rollAnimation {
+    animation-name: roll;
+}
+
+@keyframes roll {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateX(180deg) rotateY(180deg);
+    }
+}
+
+.rollDice:hover {
+    background-color: rgb(95, 226, 226);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+li {
+    font-size: 1.5rem;
+    background-color: #f2f2f2;
+    padding: .3rem;
+    margin: .5rem;
+    border-radius: 0.5rem;
+
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between; 
+    /* space between puts first on left and last item on right and divides rest evenly, thats why it appears on the right and left */
+    align-items: center;
+}
+
+li span {
+    font-size: 3rem;
+    margin-right: 1rem;
+}
