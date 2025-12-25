@@ -13,6 +13,9 @@ class PDF(FPDF):
         self.ln(20)
 
     def body(self,name):
+        # centering the image position to center as it origanially goes to 0,0 but width is from 0 to some k amount
+        # then the aviablibe width of the pdf becomes pdf.w - some k amount. to center it find the avalibale width and divid by 2 to get same space on both sides of the image
+        #hence centered. Do same for height. eg 210 - x is the new width of pdf that is now filled
         self.image("shirtificate.png", x=(self.w - 150)/2, y= (self.h - 150)/2, w=150, h=150)
         self.cell(200,200, f"{name} took CS50", align="C")
 
@@ -29,9 +32,10 @@ class PDF(FPDF):
 pdf = PDF(orientation="P", unit="mm", format="A4")
 pdf.set_font("Times", size=50)
 pdf.add_page()
-pdf.set_font("Times", size=20)
+pdf.set_font("Times", size=20) # change size so when calling the bodu you can set it customized 
 pdf.set_text_color(255,255,255)
 
 name = input("Enter Name:")
-pdf.body(name)
+pdf.body(name) # must call this function because add_page calls header and footer by default
+
 pdf.output("shirtificate.pdf")
