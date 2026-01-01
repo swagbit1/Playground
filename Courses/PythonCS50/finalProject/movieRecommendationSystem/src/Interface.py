@@ -212,10 +212,14 @@ def getRecommendations():
                 if genre in genreCounter: # if the genre in one of the ones from the user
                     if abs(float(movieAvgRating) - genreCounter[genre]) <= DIFFERENCE: # check the difference
                         recommendations.add(frozenset(movie.items())) # add it into a set so no dupes, set cannt accept dictonaries because they are mutable, so much use frozen to freeze them in place when adding to set
-    print(tabulate([dict(x) for x in recommendations], tablefmt="simple_grid")) # printout the movies using tabulate clean table format
+    print(tabulate([dict(x) for x in recommendations], tablefmt="simple_grid")) 
+    # printout the movies using tabulate clean table format
     # using list comprehension to convert the frozen dict back into the dict format,
     # this ensured that no dupes was given in the recommendations
     print(genreCounter) # see your genres and how they are weighted
+
+
+    # next goal is to use stronger recommendation system 
 
 
 
