@@ -125,14 +125,101 @@ def rateMovie():
         Update.updateRatings(ratings)
     else:
         print("Try Again! ")
+    menuInterface()
 
 
 
 
 
 def viewRatings():
-    pass
+    global ratings
+    print(tabulate(ratings, headers='keys', tablefmt="simple_grid"))
+    menuInterface()
+
+
 def getRecommendations():
-    pass
+    global ratings
+    global movies
+    recommendations = set()
+    genreCounter = {} # keys are genre, numbers are amount it appears
+    watched = []
+    watchedRating = []
+
+    # get movies from id
+    # check genres on it 
+    # increase genre counter
+    # have rating counter (number of time it appear) and rating sum -> finds average rating comedy -> [number of times it appears, sum rating each time, ]
+    # this gets average rating
+    # rank based on average rating
+
+    #need all movies watched
+    # recommend movie that is not watched
+    for movie in ratings:
+        id = int(movie["movie_id"])
+        rating = movie["rating"]
+        watched.append(movies[id - 1]) # get the movie id from rated movies and put them in watched list
+        watchedRating.append([id,rating]) # keeps track of ratings for each watched movie with it's id
+    
+    for index, movie in enumerate(watched): # watched in now filled with movies.csv
+        genres = movie["genres"].split(";") # genres is a given list so many
+        for genre in genres:
+            if genre in genreCounter: # if genre is alread in counter then
+                genreCounter[genre][0] += 1 # increment it's count by 1
+                genreCounter[genre][1] += float(watchedRating[index][1]) # add the sum of the ratings
+            else:
+                genreCounter[genre] = [1,float(watchedRating[index][1])] # if not then make it one and add it's current rating
+    # above code arranges the watched movies with this format
+    # {'Crime': [2, 6.5], 'Drama': [2, 6.5], 'Action': [1, 4.5]}
+    # where left is the amout of time it appears and right is the sum of ratings, dividing latter by first gives avg
+            
+    """
+        Average out the cumalitive ratings
+    """
+    for genre in genreCounter:
+        totalApperance = genreCounter[genre][0]
+        totalRating = genreCounter[genre][1]
+        genreCounter[genre] = (totalRating / totalApperance)
+
+    
+    # this line sorts the given dictionary with regards to the values
+    # dict meanas convert to dict
+    # items gets it to (key,value)
+    # lambda function takes item arg and returns item[1], key means how it is sorting
+    # reverse means greatest to least
+    # {'Action': 4.75, 'Crime': 3.5, 'Drama': 3.8, 'Sci-Fi': 4.5, 'Thriller': 3.5, 'Adventure': 5.0, 'Mystery': 4.0, 'Animation': 5.0}
+    #{'Adventure': 5.0, 'Animation': 5.0, 'Action': 4.75, 'Sci-Fi': 4.5, 'Mystery': 4.0, 'Drama': 3.8, 'Crime': 3.5, 'Thriller': 3.5}
+    genreCounter = dict(sorted(genreCounter.items(), key=lambda item: item[1], reverse=True))
+
+    """
+        Delete the last half of the keys so we get more rated ones
+        {'Adventure': 5.0, 'Animation': 5.0, 'Action': 4.75, 'Sci-Fi': 4.5}
+    """
+    keys = list(genreCounter.keys())
+
+    for i in keys[len(keys)//2:]: # removes from half till the end of keys
+        del genreCounter[i]
+
+    """
+        Start recommending movies based on the genres and the difference in rating b
+    """
+    # go through the movies
+    for movie in movies:
+        DIFFERENCE = 0.3 # the abs difference between movie rating and your rating showed be this 
+        if movie not in watched: #make sure the movie is not watched
+            genres = movie["genres"].split(";") # get the genres
+            movieAvgRating = movie["avg_rating"] # get the rating
+            for genre in genres: # loop through each genres
+                if genre in genreCounter: # if the genre in one of the ones from the user
+                    if abs(float(movieAvgRating) - genreCounter[genre]) <= DIFFERENCE: # check the difference
+                        recommendations.add(frozenset(movie.items())) # add it into a set so no dupes, set cannt accept dictonaries because they are mutable, so much use frozen to freeze them in place when adding to set
+    print(tabulate([dict(x) for x in recommendations], tablefmt="simple_grid")) # printout the movies using tabulate clean table format
+    # using list comprehension to convert the frozen dict back into the dict format,
+    # this ensured that no dupes was given in the recommendations
+    print(genreCounter) # see your genres and how they are weighted
+
+
+
+
+
 def getHelp():
     pass
