@@ -18,7 +18,7 @@ def main():
     #     "timestamp": "2024-21-21"
     # })
     # update.updateRatings(ratings)
-    Interface.menuInterface(movies)
+    Interface.menuInterface() 
     
 
 

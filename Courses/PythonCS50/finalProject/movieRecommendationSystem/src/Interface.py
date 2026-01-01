@@ -1,8 +1,13 @@
 import sys
 from tabulate import tabulate
+import Update
+import Read
+
+movies = Read.readMovies()
+ratings = Read.readRatings()
 
 #prints the menu interface and interacts with other functions
-def menuInterface(movies): 
+def menuInterface(): 
     print("1. View Movie Catalog")
     print("2. Rate A Movie")
     print("3. View My Ratings")
@@ -19,7 +24,7 @@ def menuInterface(movies):
 
     match choice:
         case 1:
-            viewCatalog(movies)
+            viewCatalog()
         case 2:
             rateMovie()
         case 3:
@@ -31,7 +36,8 @@ def menuInterface(movies):
         case 6:
             sys.exit("Exited Program")
 
-def viewCatalog(movies):
+def viewCatalog():
+    global movies
     counter = 0 # for indexes of movies
     tempMovies = [] # to store counter amout of movies
 
@@ -80,7 +86,50 @@ def viewCatalog(movies):
 
 
 def rateMovie():
-    pass
+    global movies
+    global ratings
+    # ensure the movie exists
+    while True: # insure errors are handled for movie id
+        try:
+            id = int(input("Enter Id: "))
+            while id < 1 or id > len(movies): # if movies has len 10, then index is 0-9, so if greater than index not count
+                id = int(input("Enter Valid Id: "))
+            break
+
+        except ValueError:
+            print("Invalid Input, Expecting A Different Type, Try Again!")
+
+    curMovie = movies[id-1] # offset of index and getting the movie
+
+    print(tabulate(curMovie.items(), tablefmt="simple_grid")) # getting the items from the dict and using tabulate to display movie
+    print(f"Found this movie with id {id}")
+    check = input("Confirm? [y/n]") # user confirmation of the movie
+    if not 'n' in check:
+        while True:
+            try:
+                userRating = float(input("Enter rating: "))
+
+                if userRating < 0 or userRating > 5:
+                    print("User Rating must be 0-5")
+                else:
+                    break
+
+            except ValueError:
+                print("Invalid Input, Try Again!")
+
+        ratings.append({ # get the feedback from the user of thier prefrences and update it accordinlgy 
+                            "movie_id": id,
+                            "rating": userRating,
+                            "timestamp": input("Enter Timestamp: ")              
+                       })
+        Update.updateRatings(ratings)
+    else:
+        print("Try Again! ")
+
+
+
+
+
 def viewRatings():
     pass
 def getRecommendations():
