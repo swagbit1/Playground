@@ -17,7 +17,7 @@ def menuInterface():
 
     while True:
         try: # scope is only under function and classes, try and while dont create their own scope, thus choice is usable all around the func
-            choice = int(input("Enter a number: "))
+            choice: int = int(input("Enter a number: "))
             break
         except ValueError:
             print("Please enter a number from the given table!")
@@ -38,7 +38,7 @@ def menuInterface():
 
 def viewCatalog():
     global movies
-    counter = 0 # for indexes of movies
+    counter:int = 0 # for indexes of movies
     tempMovies = [] # to store counter amout of movies
 
     while counter <= len(movies): # for as long as there are movies
